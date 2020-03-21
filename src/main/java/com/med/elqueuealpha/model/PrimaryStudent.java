@@ -1,4 +1,4 @@
-package com.med.elqueuealpha.repository.primary;
+package com.med.elqueuealpha.model;
 
 
 import lombok.AllArgsConstructor;

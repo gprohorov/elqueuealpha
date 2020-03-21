@@ -1,9 +1,8 @@
 package com.med.elqueuealpha.service;
 
 import com.med.elqueuealpha.repository.primary.PrimaryRepository;
-import com.med.elqueuealpha.repository.primary.PrimaryStudent;
 import com.med.elqueuealpha.repository.secondary.SecondaryRepository;
-import com.med.elqueuealpha.repository.secondary.SecondaryStudent;
+import com.med.elqueuealpha.repository.tertiary.TertiaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +17,16 @@ public class MultipleMongoService {
     @Autowired
     private SecondaryRepository secondaryRepository;
 
+    @Autowired
+    private TertiaryRepository tertiaryRepository;
+
     @PostConstruct
     void init(){
-      //  primaryRepository.save(new PrimaryStudent("1", "john"));
-       // secondaryRepository.save(new SecondaryStudent("2", "paul"));
+        System.out.println("--------------------------------");
+        System.out.println(primaryRepository.findAll().size());
+        System.out.println(secondaryRepository.findAll().size());
+        System.out.println(tertiaryRepository.findAll().size());
+
     }
 
 }

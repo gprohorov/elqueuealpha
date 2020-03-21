@@ -32,6 +32,13 @@ public class MultipleMongoConfig {
         return new MongoTemplate(secondaryFactory(this.mongoProperties.getSecondary()));
     }
 
+    @Bean(name = "tertiaryMongoTemplate")
+    public MongoTemplate tertiaryMongoTemplate() throws Exception {
+        return new MongoTemplate(tertiaryFactory(this.mongoProperties.getTertiary()));
+    }
+
+
+
     @Bean
     @Primary
     public MongoDbFactory primaryFactory(final MongoProperties mongo) throws Exception {
@@ -41,6 +48,12 @@ public class MultipleMongoConfig {
 
     @Bean
     public MongoDbFactory secondaryFactory(final MongoProperties mongo) throws Exception {
+        return new SimpleMongoDbFactory(new MongoClient(mongo.getHost(), mongo.getPort()),
+                mongo.getDatabase());
+    }
+
+    @Bean
+    public MongoDbFactory tertiaryFactory(final MongoProperties mongo) throws Exception {
         return new SimpleMongoDbFactory(new MongoClient(mongo.getHost(), mongo.getPort()),
                 mongo.getDatabase());
     }

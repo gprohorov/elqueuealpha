@@ -1,4 +1,4 @@
-package com.med.elqueuealpha.repository.secondary;
+package com.med.elqueuealpha.model;
 
 
 import org.springframework.data.annotation.Id;

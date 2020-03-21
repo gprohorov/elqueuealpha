@@ -5,9 +5,14 @@ mongodb:
   primary:
     host: localhost
     port: 27017
-    database: first
+    database: mednean_cv
   secondary:
     host: localhost
     port: 27017
-    database: second
+    database: mednean_kl
+  tertiary:
+    host: localhost
+    port: 27017
+    database: mednean_mg
+
 
