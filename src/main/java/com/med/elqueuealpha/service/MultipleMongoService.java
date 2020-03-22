@@ -31,7 +31,6 @@ public class MultipleMongoService {
         System.out.println(secondaryRepository.findAll().size());
         System.out.println(tertiaryRepository.findAll().size());
         System.out.println(sdcvRepository.findAll().size());
-
     }
 
 }

@@ -5,5 +5,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @Configuration
 @EnableMongoRepositories(basePackages = "com.med.elqueuealpha.repository.sdcv",
-        mongoTemplateRef = "tertiaryMongoTemplate")
-public class SdcvMongoConfig {}
+        mongoTemplateRef = "sdcvMongoTemplate")
+public class SdcvMongoConfig {
+}

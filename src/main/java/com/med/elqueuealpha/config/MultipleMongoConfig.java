@@ -2,7 +2,6 @@ package com.med.elqueuealpha.config;
 
 import com.mongodb.MongoClient;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +19,10 @@ import lombok.RequiredArgsConstructor;
 public class MultipleMongoConfig {
 
     private final MultipleMongoProperties mongoProperties;
+
+    public MultipleMongoConfig(MultipleMongoProperties mongoProperties) {
+        this.mongoProperties = mongoProperties;
+    }
 
     @Primary
     @Bean(name = "primaryMongoTemplate")
@@ -42,8 +45,6 @@ public class MultipleMongoConfig {
         return new MongoTemplate(sdcvFactory(this.mongoProperties.getSdcv()));
     }
 
-
-
     @Bean
     @Primary
     public MongoDbFactory primaryFactory(final MongoProperties mongo) throws Exception {
@@ -65,8 +66,6 @@ public class MultipleMongoConfig {
 
     @Bean
     public MongoDbFactory sdcvFactory(final MongoProperties mongo) throws Exception {
-        return new SimpleMongoDbFactory(new MongoClient(mongo.getHost(), mongo.getPort()),
-                mongo.getDatabase());
+        return new SimpleMongoDbFactory(new MongoClient(mongo.getHost(), mongo.getPort()), mongo.getDatabase());
     }
-
 }
