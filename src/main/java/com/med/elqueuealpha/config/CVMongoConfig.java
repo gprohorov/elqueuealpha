@@ -4,8 +4,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @Configuration
-@EnableMongoRepositories(basePackages = "com.med.elqueuealpha.repository.tertiary",
-        mongoTemplateRef = "tertiaryMongoTemplate")
-public class TertiaryMongoConfig {
+@EnableMongoRepositories(basePackages = "com.med.elqueuealpha.repository.cv",
+        mongoTemplateRef = "cvMongoTemplate")
+public class CVMongoConfig {
 
 }
