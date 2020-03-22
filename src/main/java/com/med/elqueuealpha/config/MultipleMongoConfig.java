@@ -37,6 +37,11 @@ public class MultipleMongoConfig {
         return new MongoTemplate(tertiaryFactory(this.mongoProperties.getTertiary()));
     }
 
+    @Bean(name = "sdcvMongoTemplate")
+    public MongoTemplate sdcvMongoTemplate() throws Exception {
+        return new MongoTemplate(sdcvFactory(this.mongoProperties.getSdcv()));
+    }
+
 
 
     @Bean
@@ -54,6 +59,12 @@ public class MultipleMongoConfig {
 
     @Bean
     public MongoDbFactory tertiaryFactory(final MongoProperties mongo) throws Exception {
+        return new SimpleMongoDbFactory(new MongoClient(mongo.getHost(), mongo.getPort()),
+                mongo.getDatabase());
+    }
+
+    @Bean
+    public MongoDbFactory sdcvFactory(final MongoProperties mongo) throws Exception {
         return new SimpleMongoDbFactory(new MongoClient(mongo.getHost(), mongo.getPort()),
                 mongo.getDatabase());
     }

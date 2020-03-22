@@ -14,5 +14,9 @@ mongodb:
     host: localhost
     port: 27017
     database: mednean_mg
+  sdcv:
+    host: localhost
+    port: 27017
+    database: mednean_cv
 
 
