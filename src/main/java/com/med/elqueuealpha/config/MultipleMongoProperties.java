@@ -11,6 +11,7 @@ public class MultipleMongoProperties {
     private final MongoProperties cv = new MongoProperties();
     private final MongoProperties kl = new MongoProperties();
     private final MongoProperties mg = new MongoProperties();
+    private final MongoProperties bs = new MongoProperties();
 
     public MongoProperties getCv() {
         return cv;
@@ -22,5 +23,9 @@ public class MultipleMongoProperties {
 
     public MongoProperties getMg() {
         return mg;
+    }
+
+    public MongoProperties getBs() {
+        return bs;
     }
 }

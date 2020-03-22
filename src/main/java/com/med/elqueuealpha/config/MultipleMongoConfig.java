@@ -39,6 +39,11 @@ public class MultipleMongoConfig {
         return new MongoTemplate(mgFactory(this.mongoProperties.getMg()));
     }
 
+    @Bean(name = "bsMongoTemplate")
+    public MongoTemplate bsMongoTemplate() throws Exception {
+        return new MongoTemplate(bsFactory(this.mongoProperties.getBs()));
+    }
+
     @Bean
     @Primary
     public MongoDbFactory cvFactory(final MongoProperties mongo) throws Exception {
@@ -54,6 +59,12 @@ public class MultipleMongoConfig {
 
     @Bean
     public MongoDbFactory mgFactory(final MongoProperties mongo) throws Exception {
+        return new SimpleMongoDbFactory(new MongoClient(mongo.getHost(), mongo.getPort()),
+                mongo.getDatabase());
+    }
+
+    @Bean
+    public MongoDbFactory bsFactory(final MongoProperties mongo) throws Exception {
         return new SimpleMongoDbFactory(new MongoClient(mongo.getHost(), mongo.getPort()),
                 mongo.getDatabase());
     }

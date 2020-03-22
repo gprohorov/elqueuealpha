@@ -50,5 +50,4 @@ public class MultipleMongoService {
         System.out.println(salaryDailyKLRepository.findAll().size());
         System.out.println(salaryDailyMGRepository.findAll().size());
     }
-
 }

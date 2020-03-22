@@ -19,13 +19,10 @@ public class SalaryDaily {
     private LocalDate date; // дата
     private LocalDate from; // дата
     private int days;
-
     private String name; 	// фамилия доктора
     private int doctorId;	// его айдишник
     private int stavka; 	// ставка
-
     private int bonuses; 	// бонусы за процедуры
-
     private int total;   	// всего начислено за день
 
 

@@ -11,3 +11,7 @@ mongodb:
     host: localhost
     port: 27017
     database: mednean_mg
+  bs:
+    host: localhost
+    port: 27017
+    database: mednean_bs
