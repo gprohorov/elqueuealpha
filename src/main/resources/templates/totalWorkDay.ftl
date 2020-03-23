@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="/" type="button" class="btn btn-info">Home</a>
+        <a href="/" type="button" style="margin: 25px" class="btn btn-info">Home</a>
         <form name="TotalWorkDay" action="" method="GET">
             <table class="table table-sm table-striped table-bordered table-dark">
                 <tr class="bg-success">
