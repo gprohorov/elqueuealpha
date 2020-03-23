@@ -1,7 +1,6 @@
 package com.med.elqueuealpha.model;
 
 public class DoctorProcedureProcent {
-	
     private Integer procedureId;
     private Integer procent;
 

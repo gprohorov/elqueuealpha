@@ -1,22 +1,17 @@
-
-
-
 mongodb:
-  primary:
+  cv:
     host: localhost
     port: 27017
     database: mednean_cv
-  secondary:
+  kl:
     host: localhost
     port: 27017
     database: mednean_kl
-  tertiary:
+  mg:
     host: localhost
     port: 27017
     database: mednean_mg
-  sdcv:
+  bs:
     host: localhost
     port: 27017
-    database: mednean_cv
-
-
+    database: mednean_bs
