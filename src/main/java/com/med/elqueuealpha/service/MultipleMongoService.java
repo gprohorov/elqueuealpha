@@ -37,7 +37,7 @@ public class MultipleMongoService {
         this.salaryDailyMGRepository = salaryDailyMGRepository;
     }
 
-    @PostConstruct
+    //@PostConstruct
     void init(){
 
         System.out.println("--------------Doctor------------------");

@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @RestController
-public class Controller {
+public class ControllerREST {
 
     private final DoctorCVRepository doctorCVRepository;
     private final DoctorKLRepository doctorKLRepository;
@@ -25,8 +26,9 @@ public class Controller {
     private final SalaryDailyKLRepository salaryDailyKLRepository;
     private final SalaryDailyMGRepository salaryDailyMGRepository;
 
+
     @Autowired
-    public Controller(DoctorCVRepository doctorCVRepository
+    public ControllerREST(DoctorCVRepository doctorCVRepository
             , DoctorKLRepository doctorKLRepository
             , DoctorMGRepository doctorMGRepository
             , SalaryDailyCVRepository salaryDailyCVRepository
@@ -41,8 +43,8 @@ public class Controller {
         this.salaryDailyMGRepository = salaryDailyMGRepository;
     }
 
-    @RequestMapping("/list")
-    public List<Doctor> showDoctorAll(){
+    @RequestMapping("/listDoctor")
+    public List<Doctor> getDoctorAll(){
         List<Doctor> doctorList = new ArrayList<>();
         doctorList.addAll(doctorCVRepository.findAll());
         doctorList.addAll(doctorKLRepository.findAll());
@@ -51,11 +53,11 @@ public class Controller {
     }
 
     @RequestMapping("/listSalary")
-    public List<SalaryDaily> showSalaryAll(){
-        List<SalaryDaily> doctorList = new ArrayList<>();
-        doctorList.addAll(salaryDailyCVRepository.findAll());
-        doctorList.addAll(salaryDailyKLRepository.findAll());
-        doctorList.addAll(salaryDailyMGRepository.findAll());
-        return doctorList;
+    public List<SalaryDaily> getSalaryAll(){
+        List<SalaryDaily> salaryList = new ArrayList<>();
+        salaryList.addAll(salaryDailyCVRepository.findAll());
+        salaryList.addAll(salaryDailyKLRepository.findAll());
+        salaryList.addAll(salaryDailyMGRepository.findAll());
+        return salaryList;
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class TotalWorkDayService {
@@ -31,28 +32,37 @@ public class TotalWorkDayService {
         this.totalWorkDayRepository = totalWorkDayRepository;
     }
 
+    public List<TotalWorkDay> getAll(){
+        return totalWorkDayRepository.findAll();
+    }
+
     // общая сумма за день
     void total(){
         final WorkDay workDayCV = workDayCVRepository.findAll()
                 .stream()
                 .filter(item -> item.getDate().equals(LocalDate.now()))
                 .findFirst().orElse(null);
+
         final WorkDay workDayKL = workDayKLRepository.findAll()
                 .stream()
                 .filter(item -> item.getDate().equals(LocalDate.now()))
                 .findFirst().orElse(null);
+
         final WorkDay workDayMG = workDayMGRepository.findAll()
                 .stream()
                 .filter(item -> item.getDate().equals(LocalDate.now()))
                 .findFirst().orElse(null);
-        TotalWorkDay totalWorkDay = new TotalWorkDay(LocalDate.now()
+
+        TotalWorkDay totalWorkDay = new TotalWorkDay(
+                LocalDate.now()
                 , workDayCV.getSumForExecutedProcedures()
                 , workDayKL.getSumForExecutedProcedures()
                 , workDayMG.getSumForExecutedProcedures()
                 , workDayCV.getCash()
                 , workDayKL.getCash()
-                ,workDayMG.getCash()
+                , workDayMG.getCash()
                 );
+
         totalWorkDayRepository.save(totalWorkDay);
     }
 }
