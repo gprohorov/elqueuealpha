@@ -9,7 +9,9 @@ import com.med.elqueuealpha.repository.mg.WorkDayMGRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 
 @Service
@@ -32,29 +34,30 @@ public class TotalWorkDayService {
         this.totalWorkDayRepository = totalWorkDayRepository;
     }
 
+    // get All
     public List<TotalWorkDay> getAll(){
         return totalWorkDayRepository.findAll();
     }
 
     // общая сумма за день
-    void total(){
+    void total(LocalDate date){
         final WorkDay workDayCV = workDayCVRepository.findAll()
                 .stream()
-                .filter(item -> item.getDate().equals(LocalDate.now()))
+                .filter(item -> item.getDate().equals(date))
                 .findFirst().orElse(null);
 
         final WorkDay workDayKL = workDayKLRepository.findAll()
                 .stream()
-                .filter(item -> item.getDate().equals(LocalDate.now()))
+                .filter(item -> item.getDate().equals(date))
                 .findFirst().orElse(null);
 
         final WorkDay workDayMG = workDayMGRepository.findAll()
                 .stream()
-                .filter(item -> item.getDate().equals(LocalDate.now()))
+                .filter(item -> item.getDate().equals(date))
                 .findFirst().orElse(null);
 
         TotalWorkDay totalWorkDay = new TotalWorkDay(
-                LocalDate.now()
+                date
                 , workDayCV.getSumForExecutedProcedures()
                 , workDayKL.getSumForExecutedProcedures()
                 , workDayMG.getSumForExecutedProcedures()
@@ -65,4 +68,16 @@ public class TotalWorkDayService {
 
         totalWorkDayRepository.save(totalWorkDay);
     }
+
+    // заполнение базы с 1 января 2020 по текущий день, только 1 раз
+    //@PostConstruct
+    void fullTotal(){
+        LocalDate date = LocalDate.of(2020, Month.JANUARY, 1);
+        int num = 0;
+        while(!date.plusDays(num).equals(LocalDate.now())){
+            total(date.plusDays(num));
+            num++;
+        }
+    }
+
 }

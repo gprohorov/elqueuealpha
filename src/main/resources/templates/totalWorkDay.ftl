@@ -21,24 +21,24 @@
                     <th>Общая</th>
                 </tr>
                 <#list totals as total>
-                <tr>
-                    <td>Черновцы</td>
-                    <td>${total.date}</td>
-                    <td>${total.procedureCV}</td>
-                    <td>${total.totalCV}</td>
-                </tr>
-                <tr>
-                    <td>Клишковцы</td>
-                    <td>${total.date}</td>
-                    <td>${total.procedureKL}</td>
-                    <td>${total.totalKL}</td>
-                </tr>
-                <tr>
-                    <td>Мигово</td>
-                    <td>${total.date}</td>
-                    <td>${total.procedureMG}</td>
-                    <td>${total.totalMG}</td>
-                </tr>
+                    <tr>
+                        <td>Черновцы</td>
+                        <td>${total.date}</td>
+                        <td>${total.procedureCV}</td>
+                        <td>${total.totalCV}</td>
+                    </tr>
+                    <tr>
+                        <td>Клишковцы</td>
+                        <td>${total.date}</td>
+                        <td>${total.procedureKL}</td>
+                        <td>${total.totalKL}</td>
+                    </tr>
+                    <tr>
+                        <td>Мигово</td>
+                        <td>${total.date}</td>
+                        <td>${total.procedureMG}</td>
+                        <td>${total.totalMG}</td>
+                    </tr>
                 </#list>
             </table>
         </form>
