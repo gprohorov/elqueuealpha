@@ -20,10 +20,6 @@ public class MultipleMongoConfig {
 
     private final MultipleMongoProperties mongoProperties;
 
-    public MultipleMongoConfig(MultipleMongoProperties mongoProperties) {
-        this.mongoProperties = mongoProperties;
-    }
-
     @Primary
     @Bean(name = "primaryMongoTemplate")
     public MongoTemplate primaryMongoTemplate() throws Exception {
