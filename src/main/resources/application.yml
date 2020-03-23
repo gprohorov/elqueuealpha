@@ -15,3 +15,6 @@ mongodb:
     host: localhost
     port: 27017
     database: mednean_bs
+
+
+spring.freemarker.suffix: .ftl

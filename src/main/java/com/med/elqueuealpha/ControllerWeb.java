@@ -24,6 +24,7 @@ public class ControllerWeb {
     public String showTotalAll(Model model){
         List<TotalWorkDay> list = totalWorkDayService.getAll();
         model.addAttribute("total", list);
-        return "totalWorkDay";
+        System.out.println("----------  CALLED ____________----------");
+        return "index2";
     }
 }
