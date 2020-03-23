@@ -23,7 +23,8 @@ public class ControllerWeb {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String showTotalAll(Model model){
         List<TotalWorkDay> list = totalWorkDayService.getAll();
-        model.addAttribute("totals", list);
-        return "totalWorkDay";
+        model.addAttribute("total", list);
+        System.out.println("----------  CALLED ____________----------");
+        return "index2";
     }
 }
