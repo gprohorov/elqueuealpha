@@ -1,3 +1,4 @@
+<#import "/spring.ftl" as spring/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +20,7 @@
                     <th>Процедуры</th>
                     <th>Общая</th>
                 </tr>
+                <#list totals as total>
                 <tr>
                     <td>Черновцы</td>
                     <td>${total.date}</td>
@@ -37,6 +39,7 @@
                     <td>${total.procedureMG}</td>
                     <td>${total.totalMG}</td>
                 </tr>
+                </#list>
             </table>
         </form>
     </div>
