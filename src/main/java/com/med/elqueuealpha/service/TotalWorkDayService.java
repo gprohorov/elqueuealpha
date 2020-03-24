@@ -40,7 +40,7 @@ public class TotalWorkDayService {
     }
 
     // общая сумма за день
-    void total(LocalDate date){
+    void setTotalForDay(LocalDate date){
         final WorkDay workDayCV = workDayCVRepository.findAll()
                 .stream()
                 .filter(item -> item.getDate().equals(date))
@@ -56,6 +56,13 @@ public class TotalWorkDayService {
                 .filter(item -> item.getDate().equals(date))
                 .findFirst().orElse(null);
 
+        int totalProcedure = workDayCV.getSumForExecutedProcedures() +
+                workDayKL.getSumForExecutedProcedures() +
+                workDayMG.getSumForExecutedProcedures();
+
+        int totalCash = workDayCV.getCash() + workDayKL.getCash() +
+                workDayMG.getCash();
+
         TotalWorkDay totalWorkDay = new TotalWorkDay(
                 date
                 , workDayCV.getSumForExecutedProcedures()
@@ -64,6 +71,8 @@ public class TotalWorkDayService {
                 , workDayCV.getCash()
                 , workDayKL.getCash()
                 , workDayMG.getCash()
+                , totalProcedure
+                , totalCash
                 );
 
         totalWorkDayRepository.save(totalWorkDay);
@@ -71,11 +80,12 @@ public class TotalWorkDayService {
 
     // заполнение базы с 1 января 2020 по текущий день, только 1 раз
     //@PostConstruct
-    void fullTotal(){
+    void setTotalForDays(){
+        totalWorkDayRepository.deleteAll();
         LocalDate date = LocalDate.of(2020, Month.JANUARY, 1);
         int num = 0;
         while(!date.plusDays(num).equals(LocalDate.now())){
-            total(date.plusDays(num));
+            setTotalForDay(date.plusDays(num));
             num++;
         }
     }

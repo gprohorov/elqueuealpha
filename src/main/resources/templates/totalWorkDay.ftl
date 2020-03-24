@@ -10,34 +10,38 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <a href="/" type="button" style="margin: 25px" class="btn btn-info">Home</a>
         <form name="TotalWorkDay" action="" method="GET">
             <table class="table table-sm table-striped table-bordered table-dark">
                 <tr class="bg-success">
-                    <th>Место</th>
                     <th>Дата</th>
-                    <th>Процедуры</th>
-                    <th>Общая</th>
+                    <th>Нараховано</th>
+                    <th>Загальна</th>
+                    <th></th>
+                    <th>Нараховано</th>
+                    <th>Загальна</th>
+                    <th></th>
+                    <th>Нараховано</th>
+                    <th>Загальна</th>
+                    <th></th>
+                    <th>Нараховано</th>
+                    <th>Загальна</th>
                 </tr>
                 <#list totals as total>
                     <tr>
+                        <td>${total.date}</td>
+                        <td>${total.totalProcedure}</td>
+                        <td>${total.totalCash}</td>
                         <td>Черновцы</td>
-                        <td>${total.date}</td>
                         <td>${total.procedureCV}</td>
-                        <td>${total.totalCV}</td>
-                    </tr>
-                    <tr>
+                        <td>${total.cashCV}</td>
                         <td>Клишковцы</td>
-                        <td>${total.date}</td>
                         <td>${total.procedureKL}</td>
-                        <td>${total.totalKL}</td>
-                    </tr>
-                    <tr>
+                        <td>${total.cashKL}</td>
                         <td>Мигово</td>
-                        <td>${total.date}</td>
                         <td>${total.procedureMG}</td>
-                        <td>${total.totalMG}</td>
+                        <td>${total.cashMG}</td>
                     </tr>
                 </#list>
             </table>

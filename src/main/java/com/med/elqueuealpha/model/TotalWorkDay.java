@@ -14,31 +14,42 @@ public class TotalWorkDay {
     private int procedureCV;    // процедуры  Черновцы
     private int procedureKL;    // процедуры  Клишковцы
     private int procedureMG;    // процедуры  Мигово
-    private int totalCV;        // сума Черновцы
-    private int totalKL;        // сума Клишковцы
-    private int totalMG;        // сума Мигово
+    private int cashCV;         // сума Черновцы
+    private int cashKL;         // сума Клишковцы
+    private int cashMG;         // сума Мигово
+    private int totalProcedure; // общая процедуры
+    private int totalCash;      //
 
     public TotalWorkDay() { }
 
-    public TotalWorkDay(LocalDate date, int procedureCV, int procedureKL, int procedureMG, int totalCV, int totalKL, int totalMG) {
+    public TotalWorkDay(LocalDate date, int procedureCV, int procedureKL,
+                        int procedureMG, int cashCV, int cashKL, int cashMG,
+                        int totalProcedure, int totalCash) {
         this.date = date;
         this.procedureCV = procedureCV;
         this.procedureKL = procedureKL;
         this.procedureMG = procedureMG;
-        this.totalCV = totalCV;
-        this.totalKL = totalKL;
-        this.totalMG = totalMG;
+        this.cashCV = cashCV;
+        this.cashKL = cashKL;
+        this.cashMG = cashMG;
+        this.totalProcedure = totalProcedure;
+        this.totalCash = totalCash;
     }
 
-    public TotalWorkDay(String id, LocalDate date, int procedureCV, int procedureKL, int procedureMG, int totalCV, int totalKL, int totalMG) {
+    public TotalWorkDay(String id, LocalDate date, int procedureCV,
+                        int procedureKL, int procedureMG, int cashCV,
+                        int cashKL, int cashMG, int totalProcedure,
+                        int totalCash) {
         this.id = id;
         this.date = date;
         this.procedureCV = procedureCV;
         this.procedureKL = procedureKL;
         this.procedureMG = procedureMG;
-        this.totalCV = totalCV;
-        this.totalKL = totalKL;
-        this.totalMG = totalMG;
+        this.cashCV = cashCV;
+        this.cashKL = cashKL;
+        this.cashMG = cashMG;
+        this.totalProcedure = totalProcedure;
+        this.totalCash = totalCash;
     }
 
     public String getId() {
@@ -81,28 +92,44 @@ public class TotalWorkDay {
         this.procedureMG = procedureMG;
     }
 
-    public int getTotalCV() {
-        return totalCV;
+    public int getCashCV() {
+        return cashCV;
     }
 
-    public void setTotalCV(int totalCV) {
-        this.totalCV = totalCV;
+    public void setCashCV(int cashCV) {
+        this.cashCV = cashCV;
     }
 
-    public int getTotalKL() {
-        return totalKL;
+    public int getCashKL() {
+        return cashKL;
     }
 
-    public void setTotalKL(int totalKL) {
-        this.totalKL = totalKL;
+    public void setCashKL(int cashKL) {
+        this.cashKL = cashKL;
     }
 
-    public int getTotalMG() {
-        return totalMG;
+    public int getCashMG() {
+        return cashMG;
     }
 
-    public void setTotalMG(int totalMG) {
-        this.totalMG = totalMG;
+    public void setCashMG(int cashMG) {
+        this.cashMG = cashMG;
+    }
+
+    public int getTotalProcedure() {
+        return totalProcedure;
+    }
+
+    public void setTotalProcedure(int totalProcedure) {
+        this.totalProcedure = totalProcedure;
+    }
+
+    public int getTotalCash() {
+        return totalCash;
+    }
+
+    public void setTotalCash(int totalCash) {
+        this.totalCash = totalCash;
     }
 
     @Override
@@ -126,9 +153,11 @@ public class TotalWorkDay {
                 ", procedureCV=" + procedureCV +
                 ", procedureKL=" + procedureKL +
                 ", procedureMG=" + procedureMG +
-                ", totalCV=" + totalCV +
-                ", totalKL=" + totalKL +
-                ", totalMG=" + totalMG +
+                ", cashCV=" + cashCV +
+                ", cashKL=" + cashKL +
+                ", cashMG=" + cashMG +
+                ", totalProcedure=" + totalProcedure +
+                ", totalCash=" + totalCash +
                 '}';
     }
 }
