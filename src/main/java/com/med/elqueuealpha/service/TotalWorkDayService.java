@@ -1,7 +1,7 @@
 package com.med.elqueuealpha.service;
 
-import com.med.elqueuealpha.model.TotalWorkDay;
-import com.med.elqueuealpha.model.WorkDay;
+import com.med.elqueuealpha.model.total.TotalWorkDay;
+import com.med.elqueuealpha.model.workday.WorkDay;
 import com.med.elqueuealpha.repository.bs.TotalWorkDayRepository;
 import com.med.elqueuealpha.repository.cv.WorkDayCVRepository;
 import com.med.elqueuealpha.repository.kl.WorkDayKLRepository;
@@ -39,6 +39,11 @@ public class TotalWorkDayService {
         return totalWorkDayRepository.findAll();
     }
 
+    //данные по дате
+    public TotalWorkDay getDate(LocalDate date){
+        return totalWorkDayRepository.findByDate(date);
+    }
+
     // общая сумма за день
     void setTotalForDay(LocalDate date){
         final WorkDay workDayCV = workDayCVRepository.findAll()
@@ -56,12 +61,13 @@ public class TotalWorkDayService {
                 .filter(item -> item.getDate().equals(date))
                 .findFirst().orElse(null);
 
-        int totalProcedure = workDayCV.getSumForExecutedProcedures() +
+        long totalProcedure = workDayCV.getSumForExecutedProcedures() +
                 workDayKL.getSumForExecutedProcedures() +
                 workDayMG.getSumForExecutedProcedures();
 
-        int totalCash = workDayCV.getCash() + workDayKL.getCash() +
-                workDayMG.getCash();
+        long totalCashCard = workDayCV.getCash() + workDayKL.getCash() +
+                workDayMG.getCash() + workDayCV.getCard() + workDayKL.getCard() +
+                workDayMG.getCard();
 
         TotalWorkDay totalWorkDay = new TotalWorkDay(
                 date
@@ -71,17 +77,19 @@ public class TotalWorkDayService {
                 , workDayCV.getCash()
                 , workDayKL.getCash()
                 , workDayMG.getCash()
+                , workDayCV.getCard()
+                , workDayKL.getCard()
+                , workDayMG.getCard()
                 , totalProcedure
-                , totalCash
+                , totalCashCard
                 );
 
         totalWorkDayRepository.save(totalWorkDay);
     }
 
     // заполнение базы с 1 января 2020 по текущий день, только 1 раз
-    //@PostConstruct
-    void setTotalForDays(){
-        totalWorkDayRepository.deleteAll();
+    public void start(){
+
         LocalDate date = LocalDate.of(2020, Month.JANUARY, 1);
         int num = 0;
         while(!date.plusDays(num).equals(LocalDate.now())){

@@ -1,4 +1,4 @@
-package com.med.elqueuealpha.model;
+package com.med.elqueuealpha.model.total;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,20 +11,24 @@ public class TotalWorkDay {
     @Id
     private String id;
     private LocalDate date;     // дата
-    private int procedureCV;    // процедуры  Черновцы
-    private int procedureKL;    // процедуры  Клишковцы
-    private int procedureMG;    // процедуры  Мигово
-    private int cashCV;         // сума Черновцы
-    private int cashKL;         // сума Клишковцы
-    private int cashMG;         // сума Мигово
-    private int totalProcedure; // общая процедуры
-    private int totalCash;      //
+    private long procedureCV;    // процедуры  Черновцы
+    private long procedureKL;    // процедуры  Клишковцы
+    private long procedureMG;    // процедуры  Мигово
+    private long cashCV;         // наличные Черновцы
+    private long cashKL;         // наличные Клишковцы
+    private long cashMG;         // наличные Мигово
+    private long cardCV;         // электронные Черновцы
+    private long cardKL;         // электронные Клишковцы
+    private long cardMG;         // электронные Мигово
+    private long totalProcedure; // сумма процедур
+    private long totalCashCard;  // сумма наличных и электронных
 
     public TotalWorkDay() { }
 
-    public TotalWorkDay(LocalDate date, int procedureCV, int procedureKL,
-                        int procedureMG, int cashCV, int cashKL, int cashMG,
-                        int totalProcedure, int totalCash) {
+    public TotalWorkDay(LocalDate date, long procedureCV, long procedureKL,
+                        long procedureMG, long cashCV, long cashKL, long cashMG,
+                        long cardCV, long cardKL, long cardMG, long totalProcedure,
+                        long totalCashCard) {
         this.date = date;
         this.procedureCV = procedureCV;
         this.procedureKL = procedureKL;
@@ -32,14 +36,17 @@ public class TotalWorkDay {
         this.cashCV = cashCV;
         this.cashKL = cashKL;
         this.cashMG = cashMG;
+        this.cardCV = cardCV;
+        this.cardKL = cardKL;
+        this.cardMG = cardMG;
         this.totalProcedure = totalProcedure;
-        this.totalCash = totalCash;
+        this.totalCashCard = totalCashCard;
     }
 
-    public TotalWorkDay(String id, LocalDate date, int procedureCV,
-                        int procedureKL, int procedureMG, int cashCV,
-                        int cashKL, int cashMG, int totalProcedure,
-                        int totalCash) {
+    public TotalWorkDay(String id, LocalDate date, long procedureCV,
+                        long procedureKL, long procedureMG, long cashCV,
+                        long cashKL, long cashMG, long cardCV, long cardKL,
+                        long cardMG, long totalProcedure, long totalCashCard) {
         this.id = id;
         this.date = date;
         this.procedureCV = procedureCV;
@@ -48,8 +55,11 @@ public class TotalWorkDay {
         this.cashCV = cashCV;
         this.cashKL = cashKL;
         this.cashMG = cashMG;
+        this.cardCV = cardCV;
+        this.cardKL = cardKL;
+        this.cardMG = cardMG;
         this.totalProcedure = totalProcedure;
-        this.totalCash = totalCash;
+        this.totalCashCard = totalCashCard;
     }
 
     public String getId() {
@@ -68,7 +78,7 @@ public class TotalWorkDay {
         this.date = date;
     }
 
-    public int getProcedureCV() {
+    public long getProcedureCV() {
         return procedureCV;
     }
 
@@ -76,7 +86,7 @@ public class TotalWorkDay {
         this.procedureCV = procedureCV;
     }
 
-    public int getProcedureKL() {
+    public long getProcedureKL() {
         return procedureKL;
     }
 
@@ -84,7 +94,7 @@ public class TotalWorkDay {
         this.procedureKL = procedureKL;
     }
 
-    public int getProcedureMG() {
+    public long getProcedureMG() {
         return procedureMG;
     }
 
@@ -92,7 +102,7 @@ public class TotalWorkDay {
         this.procedureMG = procedureMG;
     }
 
-    public int getCashCV() {
+    public long getCashCV() {
         return cashCV;
     }
 
@@ -100,7 +110,7 @@ public class TotalWorkDay {
         this.cashCV = cashCV;
     }
 
-    public int getCashKL() {
+    public long getCashKL() {
         return cashKL;
     }
 
@@ -108,7 +118,7 @@ public class TotalWorkDay {
         this.cashKL = cashKL;
     }
 
-    public int getCashMG() {
+    public long getCashMG() {
         return cashMG;
     }
 
@@ -116,7 +126,31 @@ public class TotalWorkDay {
         this.cashMG = cashMG;
     }
 
-    public int getTotalProcedure() {
+    public long getCardCV() {
+        return cardCV;
+    }
+
+    public void setCardCV(int cardCV) {
+        this.cardCV = cardCV;
+    }
+
+    public long getCardKL() {
+        return cardKL;
+    }
+
+    public void setCardKL(int cardKL) {
+        this.cardKL = cardKL;
+    }
+
+    public long getCardMG() {
+        return cardMG;
+    }
+
+    public void setCardMG(int cardMG) {
+        this.cardMG = cardMG;
+    }
+
+    public long getTotalProcedure() {
         return totalProcedure;
     }
 
@@ -124,12 +158,12 @@ public class TotalWorkDay {
         this.totalProcedure = totalProcedure;
     }
 
-    public int getTotalCash() {
-        return totalCash;
+    public long getTotalCashCard() {
+        return totalCashCard;
     }
 
-    public void setTotalCash(int totalCash) {
-        this.totalCash = totalCash;
+    public void setTotalCashCard(int totalCashCard) {
+        this.totalCashCard = totalCashCard;
     }
 
     @Override
@@ -156,8 +190,11 @@ public class TotalWorkDay {
                 ", cashCV=" + cashCV +
                 ", cashKL=" + cashKL +
                 ", cashMG=" + cashMG +
+                ", cardCV=" + cardCV +
+                ", cardKL=" + cardKL +
+                ", cardMG=" + cardMG +
                 ", totalProcedure=" + totalProcedure +
-                ", totalCash=" + totalCash +
+                ", totalCash=" + totalCashCard +
                 '}';
     }
 }

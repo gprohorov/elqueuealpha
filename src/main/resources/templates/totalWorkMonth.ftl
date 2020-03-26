@@ -15,7 +15,7 @@
         <form name="TotalWorkDay" action="" method="GET">
             <table class="table table-sm table-striped table-bordered table-dark">
                 <tr class="bg-success">
-                    <th>Дата</th>
+                    <th>Місяць</th>
                     <th>Нараховано всього</th>
                     <th>Заплатили всього</th>
                     <th>Нараховано CV</th>
@@ -30,16 +30,16 @@
                 </tr>
                 <#list totals as total>
                     <tr>
-                        <td>${total.date}</td>
+                        <td>${total.month}</td>
                         <td>${total.totalProcedure}</td>
                         <td>${total.totalCashCard}</td>
-                        <td>${total.procedureCV}</td>
+                        <td>${total.billCV}</td>
                         <td>${total.cashCV}</td>
                         <td>${total.cardCV}</td>
-                        <td>${total.procedureKL}</td>
+                        <td>${total.billKL}</td>
                         <td>${total.cashKL}</td>
                         <td>${total.cardKL}</td>
-                        <td>${total.procedureMG}</td>
+                        <td>${total.billMG}</td>
                         <td>${total.cashMG}</td>
                         <td>${total.cardMG}</td>
                     </tr>

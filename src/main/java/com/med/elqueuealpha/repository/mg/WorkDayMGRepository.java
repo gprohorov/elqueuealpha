@@ -1,6 +1,6 @@
 package com.med.elqueuealpha.repository.mg;
 
-import com.med.elqueuealpha.model.WorkDay;
+import com.med.elqueuealpha.model.workday.WorkDay;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.med.elqueuealpha.model;
+package com.med.elqueuealpha.model.workday;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
