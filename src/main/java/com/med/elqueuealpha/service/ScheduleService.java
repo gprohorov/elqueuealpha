@@ -38,13 +38,13 @@ public class ScheduleService {
 
     // week
     @Scheduled(cron = "0 45 19 * * SAT")
-    void setTotalWorkWeek(){
+    void generateTotalWorkWeek(){
         totalWorkWeekService.generateWeek();
     }
 
     // month
     @Scheduled(cron = "0 10 1 1 * *")
-    void setTotalWorkMonth(){
+    void generateTotalWorkMonth(){
         totalWorkMonthService.generateMonth();
     }
 }
