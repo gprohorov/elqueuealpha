@@ -11,22 +11,33 @@
 </head>
 <body>
     <div class="container-fluid">
-        <a href="/" type="button" style="margin: 25px" class="btn btn-info">Головна</a>
+        <div class="container" style="display: flex; flex-direction: row">
+            <a href="/day" type="button" style="margin: 50px" class="btn btn-info">Загально по дням</a>
+            <a href="/week" type="button" style="margin: 50px" class="btn btn-info">Загально по тижням</a>
+            <a href="/month" type="button" style="margin: 50px" class="btn btn-info">Загально по мiсяцям</a>
+        </div>
         <form name="TotalWorkDay" action="" method="GET">
             <table class="table table-sm table-striped table-bordered table-dark">
+                <tr class="bg-success text-center">
+                    <th rowspan="2" class="align-middle">Тиждень</th>
+                    <th rowspan="2" class="align-middle">Нараховано всього</th>
+                    <th rowspan="2" class="align-middle">Заплатили всього</th>
+                    <th colspan="3">Чернівці</th>
+                    <th colspan="3">Клішківці</th>
+                    <th colspan="3">Мигове</th>
+                </tr>
                 <tr class="bg-success">
-                    <th>Тиждень</th>
-                    <th>Нараховано всього</th>
-                    <th>Заплатили всього</th>
-                    <th>Нараховано CV</th>
-                    <th>Готiвка CV</th>
-                    <th>Картка CV</th>
-                    <th>Нараховано KL</th>
-                    <th>Готiвка KL</th>
-                    <th>Картка KL</th>
-                    <th>Нараховано MG</th>
-                    <th>Готiвка MG</th>
-                    <th>Картка MG</th>
+                    <th>Нараховано</th>
+                    <th>Готiвка</th>
+                    <th>Картка</th>
+                    
+                    <th>Нараховано</th>
+                    <th>Готiвка</th>
+                    <th>Картка</th>
+                    
+                    <th>Нараховано</th>
+                    <th>Готiвка</th>
+                    <th>Картка</th>
                 </tr>
                 <#list totals as total>
                     <tr>
