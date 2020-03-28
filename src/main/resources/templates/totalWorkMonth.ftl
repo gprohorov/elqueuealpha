@@ -18,19 +18,26 @@
         </div>
         <form name="TotalWorkDay" action="" method="GET">
             <table class="table table-sm table-striped table-bordered table-dark">
+                <tr class="bg-success text-center">
+                    <th rowspan="2" class="align-middle">Місяць</th>
+                    <th rowspan="2" class="align-middle">Нараховано всього</th>
+                    <th rowspan="2" class="align-middle">Заплатили всього</th>
+                    <th colspan="3">Чернівці</th>
+                    <th colspan="3">Клішківці</th>
+                    <th colspan="3">Мигове</th>
+                </tr>
                 <tr class="bg-success">
-                    <th>Місяць</th>
-                    <th>Нараховано всього</th>
-                    <th>Заплатили всього</th>
-                    <th>Нараховано CV</th>
-                    <th>Готiвка CV</th>
-                    <th>Картка CV</th>
-                    <th>Нараховано KL</th>
-                    <th>Готiвка KL</th>
-                    <th>Картка KL</th>
-                    <th>Нараховано MG</th>
-                    <th>Готiвка MG</th>
-                    <th>Картка MG</th>
+                    <th>Нараховано</th>
+                    <th>Готiвка</th>
+                    <th>Картка</th>
+                    
+                    <th>Нараховано</th>
+                    <th>Готiвка</th>
+                    <th>Картка</th>
+                    
+                    <th>Нараховано</th>
+                    <th>Готiвка</th>
+                    <th>Картка</th>
                 </tr>
                 <#list totals as total>
                     <tr>
