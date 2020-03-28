@@ -43,7 +43,7 @@ public class ScheduleService {
     }
 
     // month
-    @Scheduled(cron = "1 10 1 1 * *")
+    @Scheduled(cron = "0 10 1 1 * *")
     void setTotalWorkMonth(){
         totalWorkMonthService.generateMonth();
     }
