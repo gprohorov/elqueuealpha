@@ -11,7 +11,11 @@
 </head>
 <body>
     <div class="container-fluid">
-        <a href="/" type="button" style="margin: 25px" class="btn btn-info">Головна</a>
+        <div class="container" style="display: flex; flex-direction: row">
+            <a href="/day" type="button" style="margin: 50px" class="btn btn-info">Загально по дням</a>
+            <a href="/week" type="button" style="margin: 50px" class="btn btn-info">Загально по тижням</a>
+            <a href="/month" type="button" style="margin: 50px" class="btn btn-info">Загально по мiсяцям</a>
+        </div>
         <form name="TotalWorkDay" action="" method="GET">
             <table class="table table-sm table-striped table-bordered table-dark">
                 <tr class="bg-success">
