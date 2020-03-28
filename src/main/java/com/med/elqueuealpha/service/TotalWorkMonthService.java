@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.Comparator;
 import java.util.List;
 
@@ -38,8 +39,21 @@ public class TotalWorkMonthService {
         return totalWorkMonthRepository.findAll();
     }
 
+    // создание нового месяца
+    public void generateMonth(){
+        int year = LocalDate.now().getYear();
+
+        int month = LocalDate.now().getMonthValue() -1 ;
+        if(LocalDate.now().getMonth().equals(Month.JANUARY)){
+            year-=1;
+            month=12;
+        }
+
+        this.createTotalForMonth(year, month);
+    }
+
     // общая сумма за месяц
-    void setTotalForMonth(int year, int month){
+    void createTotalForMonth(int year, int month){
         GeneralStatisticsDTOMonthly dtoMonthliesCV = workMonthCVRepository.findAll()
                 .stream()
                 .filter(item -> item.getYear() == year)
@@ -97,7 +111,7 @@ public class TotalWorkMonthService {
                 .get();
 
         for(int i = 1; i <= month.getMonthNumber(); i++) {
-            this.setTotalForMonth(2020, i);
+            this.createTotalForMonth(2020, i);
         }
     }
 
@@ -176,7 +190,7 @@ public class TotalWorkMonthService {
             }
 
             for (int i = monthMin.getMonthNumber(); i <= monthMax.getMonthNumber(); i++) {
-                this.setTotalForMonth(finalJ, i);
+                this.createTotalForMonth(finalJ, i);
             }
         }
     }

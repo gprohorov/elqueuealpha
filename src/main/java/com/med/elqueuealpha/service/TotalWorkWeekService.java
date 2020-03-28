@@ -33,6 +33,7 @@ public class TotalWorkWeekService {
         return totalWorkWeekRepository.findAll();
     }
 
+    // создание новой недели
     public void generateWeek(){
         int year = LocalDate.now().getYear();
 
@@ -43,11 +44,11 @@ public class TotalWorkWeekService {
                 .max()
                 .orElse(0);
 
-        this.setTotalForWeek( year,lastWeek + 1);
+        this.createTotalForWeek( year, lastWeek + 1);
     }
 
     // общая сумма за неделю
-    void setTotalForWeek(int year, int week){
+    void createTotalForWeek(int year, int week){
         GeneralStatisticsDTOWeekly dtoWeeklyCV = workWeekCVRepository.findAll()
                  .stream()
                  .filter(item -> item.getYear() == year)
@@ -104,7 +105,7 @@ public class TotalWorkWeekService {
                 .get();
 
         for (int i = 0; i <= week.getWeekNumber(); i++) {
-            this.setTotalForWeek(2020, i);
+            this.createTotalForWeek(2020, i);
         }
     }
 
@@ -181,7 +182,7 @@ public class TotalWorkWeekService {
             }
 
             for (int i = weekMin.getWeekNumber(); i <= weekMax.getWeekNumber(); i++) {
-                this.setTotalForWeek(finalJ, i);
+                this.createTotalForWeek(finalJ, i);
             }
         }
     }
