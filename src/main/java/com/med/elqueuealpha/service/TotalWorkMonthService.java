@@ -88,6 +88,7 @@ public class TotalWorkMonthService {
 
 
     public void start(){
+        totalWorkMonthRepository.deleteAll();
         for(int i = 1; i < 3; i++) {
             this.setTotalForMonth(2020, i);
         }

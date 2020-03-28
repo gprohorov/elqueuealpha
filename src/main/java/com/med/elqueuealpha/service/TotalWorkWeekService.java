@@ -84,6 +84,7 @@ public class TotalWorkWeekService {
     }
 
     public void start(){
+        totalWorkWeekRepository.deleteAll();
         for (int i = 0; i < 12; i++) {
             this.setTotalForWeek(2020, i);
         }
