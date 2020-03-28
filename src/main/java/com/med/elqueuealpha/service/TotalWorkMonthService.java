@@ -9,11 +9,9 @@ import com.med.elqueuealpha.repository.mg.WorkMonthMGRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -86,10 +84,100 @@ public class TotalWorkMonthService {
         totalWorkMonthRepository.save(totalCash);
     }
 
+    // заполнение базы 2020 год
+    public void setStart(){
+        totalWorkMonthRepository.deleteAll();
 
-    public void start(){
-        for(int i = 1; i < 3; i++) {
+        Comparator<GeneralStatisticsDTOMonthly> comparator = Comparator.comparing(GeneralStatisticsDTOMonthly::getMonthNumber);
+
+        GeneralStatisticsDTOMonthly month = workMonthCVRepository.findAll()
+                .stream()
+                .filter(item -> item.getYear() == 2020)
+                .max(comparator)
+                .get();
+
+        for(int i = 1; i <= month.getMonthNumber(); i++) {
             this.setTotalForMonth(2020, i);
+        }
+    }
+
+    // за все время
+    public void setStartFull(){
+        totalWorkMonthRepository.deleteAll();
+
+        Comparator<GeneralStatisticsDTOMonthly> comparatorMonth = Comparator.comparing(GeneralStatisticsDTOMonthly::getMonthNumber);
+        Comparator<GeneralStatisticsDTOMonthly> comparatorYear = Comparator.comparing(GeneralStatisticsDTOMonthly::getYear);
+
+        GeneralStatisticsDTOMonthly yearCV = workMonthCVRepository.findAll()
+                .stream()
+                .min(comparatorYear)
+                .get();
+        GeneralStatisticsDTOMonthly yearKL = workMonthKLRepository.findAll()
+                .stream()
+                .min(comparatorYear)
+                .get();
+        GeneralStatisticsDTOMonthly yearMG = workMonthMGRepository.findAll()
+                .stream()
+                .min(comparatorYear)
+                .get();
+
+        GeneralStatisticsDTOMonthly year;
+
+        if(yearCV.getYear() > yearKL.getYear())year = yearCV;
+        else year = yearKL;
+        if(year.getYear() < yearMG.getYear()) year = yearMG;
+
+        for (int j = year.getYear(); j <= LocalDate.now().getYear(); j++) {
+            int finalJ = j;
+
+            GeneralStatisticsDTOMonthly monthMax = new GeneralStatisticsDTOMonthly();
+            GeneralStatisticsDTOMonthly monthMin = new GeneralStatisticsDTOMonthly();
+
+            if(year == yearCV) {
+                monthMax = workMonthCVRepository.findAll()
+                        .stream()
+                        .filter(item -> item.getYear() == finalJ)
+                        .max(comparatorMonth)
+                        .get();
+
+
+                monthMin = workMonthCVRepository.findAll()
+                        .stream()
+                        .filter(item -> item.getYear() == finalJ)
+                        .min(comparatorMonth)
+                        .get();
+            }
+            if(year == yearKL) {
+                monthMax = workMonthKLRepository.findAll()
+                        .stream()
+                        .filter(item -> item.getYear() == finalJ)
+                        .max(comparatorMonth)
+                        .get();
+
+
+                monthMin = workMonthKLRepository.findAll()
+                        .stream()
+                        .filter(item -> item.getYear() == finalJ)
+                        .min(comparatorMonth)
+                        .get();
+            }
+            if(year == yearMG) {
+                monthMax = workMonthMGRepository.findAll()
+                        .stream()
+                        .filter(item -> item.getYear() == finalJ)
+                        .max(comparatorMonth)
+                        .get();
+
+                monthMin = workMonthMGRepository.findAll()
+                        .stream()
+                        .filter(item -> item.getYear() == finalJ)
+                        .min(comparatorMonth)
+                        .get();
+            }
+
+            for (int i = monthMin.getMonthNumber(); i <= monthMax.getMonthNumber(); i++) {
+                this.setTotalForMonth(finalJ, i);
+            }
         }
     }
 }

@@ -88,8 +88,8 @@ public class TotalWorkDayService {
     }
 
     // заполнение базы с 1 января 2020 по текущий день, только 1 раз
-    public void start(){
-
+    public void setStart(){
+        totalWorkDayRepository.deleteAll();
         LocalDate date = LocalDate.of(2020, Month.JANUARY, 1);
         int num = 0;
         while(!date.plusDays(num).equals(LocalDate.now())){

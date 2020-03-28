@@ -45,6 +45,7 @@ public class ControllerWeb {
     @RequestMapping(value = "/week", method = RequestMethod.GET)
     public String showWeeksAll(Model model){
         List<TotalWorkWeek> list = totalWorkWeekService.getAll();
+        Collections.reverse(list);
         model.addAttribute("totals", list);
         return "totalWorkWeek";
     }
@@ -56,18 +57,38 @@ public class ControllerWeb {
         return "totalWorkMonth";
     }
 
+    // сброс и заполнения по дням
     @RequestMapping(value = "/generate/day", method = RequestMethod.GET)
-    public void showGenerateDay(){
-        totalWorkDayService.start();
+    public String setGenerateDay(){
+        totalWorkDayService.setStart();
+        return "redirect:/day";
     }
 
+    // сброс и заполнения по неделям
     @RequestMapping(value = "/generate/week", method = RequestMethod.GET)
-    public void showGenerateWeek(){
-        totalWorkWeekService.start();
+    public String setGenerateWeek(){
+        totalWorkWeekService.setStart();
+        return "redirect:/week";
     }
 
+    // сброс и заполнения по месяцам
     @RequestMapping(value = "/generate/month", method = RequestMethod.GET)
-    public void showGenerateMonth(){
-        totalWorkMonthService.start();
+    public String setGenerateMonth(){
+        totalWorkMonthService.setStart();
+        return "redirect:/month";
+    }
+
+    //за все время
+    @RequestMapping(value = "/generate/weekF", method = RequestMethod.GET)
+    public String setGenerateWeekFull(){
+        totalWorkWeekService.setStartFull();
+        return "redirect:/week";
+    }
+
+    //за все время
+    @RequestMapping(value = "/generate/monthF", method = RequestMethod.GET)
+    public String setGenerateMonthFull(){
+        totalWorkMonthService.setStartFull();
+        return "redirect:/month";
     }
 }

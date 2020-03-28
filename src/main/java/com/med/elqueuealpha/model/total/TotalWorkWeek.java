@@ -22,7 +22,7 @@ public class TotalWorkWeek {
     private long cardKL;            // электронные Клишковцы
     private long cardMG;            // электронные Мигово
     private long totalProcedure;    // сумма процедур
-    private long totalCashCard;         // сумма наличных и электронных
+    private long totalCashCard;     // сумма наличных и электронных
 
     public TotalWorkWeek() { }
 

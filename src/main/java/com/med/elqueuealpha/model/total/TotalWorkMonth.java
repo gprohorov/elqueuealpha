@@ -9,9 +9,9 @@ import java.util.Objects;
 public class TotalWorkMonth {
     @Id
     private String id;
-    private String month;           // числа недели
+    private String month;           // название месяца
     private int year;               // год
-    private int monthNumber;        // неделя в году
+    private int monthNumber;        // месяц в году
     private long billCV;            // насчитано по процедурам Черновцы
     private long billKL;            // насчитано по процедурам Клишковцы
     private long billMG;            // насчитано по процедурам Мигово
@@ -22,7 +22,7 @@ public class TotalWorkMonth {
     private long cardKL;            // электронные Клишковцы
     private long cardMG;            // электронные Мигово
     private long totalProcedure;    // сумма процедур
-    private long totalCashCard;         // сумма наличных и электронных
+    private long totalCashCard;     // сумма наличных и электронных
 
     public TotalWorkMonth() { }
 
