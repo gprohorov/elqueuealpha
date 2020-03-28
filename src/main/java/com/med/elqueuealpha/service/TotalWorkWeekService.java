@@ -33,6 +33,19 @@ public class TotalWorkWeekService {
         return totalWorkWeekRepository.findAll();
     }
 
+    public void generateWeek(){
+        int year = LocalDate.now().getYear();
+
+        int lastWeek = this.getAll()
+                .stream()
+                .filter(item -> item.getYear() == year)
+                .mapToInt(TotalWorkWeek::getWeekNumber)
+                .max()
+                .orElse(0);
+
+        this.setTotalForWeek( year,lastWeek + 1);
+    }
+
     // общая сумма за неделю
     void setTotalForWeek(int year, int week){
         GeneralStatisticsDTOWeekly dtoWeeklyCV = workWeekCVRepository.findAll()

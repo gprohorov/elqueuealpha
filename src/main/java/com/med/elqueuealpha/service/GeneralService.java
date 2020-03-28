@@ -42,7 +42,7 @@ public class GeneralService {
     }
 
     void zeroingDay(){
-        zeroingDayKL();
+        this.zeroingDayKL();
     }
 
     // list докторов id Черновцы
@@ -57,7 +57,7 @@ public class GeneralService {
 
     // list телефонов докторов из id Черновцы
     List<String> listPhoneCV(){
-        return listIdCV()
+        return this.listIdCV()
                 .stream()
                 .map(item -> doctorCVRepository.findById(item).get().getCellPhone())
                 .collect(Collectors.toList());
@@ -75,7 +75,7 @@ public class GeneralService {
 
     // list телефонов докторов из id Клишковцы
     List<String> listPhoneKL(){
-        return listIdKL()
+        return this.listIdKL()
                 .stream()
                 .map(item -> doctorKLRepository.findById(item).get().getCellPhone())
                 .collect(Collectors.toList());
@@ -83,8 +83,8 @@ public class GeneralService {
 
     // обнуление если есть вторая ставка Клишковцы
     void zeroingDayKL(){
-        List<String> listPhoneKL = listPhoneKL();
-        listZeroingDay(listPhoneKL);
+        List<String> listPhoneKL = this.listPhoneKL();
+        this.listZeroingDay(listPhoneKL);
     }
 
     // list докторов id Мигово
@@ -99,7 +99,7 @@ public class GeneralService {
 
     // list телефонов докторов из id Мигово
     List<String> listPhoneMG(){
-        return listIdMG()
+        return this.listIdMG()
                 .stream()
                 .map(item -> doctorMGRepository.findById(item).get().getCellPhone())
                 .collect(Collectors.toList());
@@ -107,15 +107,15 @@ public class GeneralService {
 
     // обнуление если есть вторая ставка Мигово
     void zeroingDayMG(){
-        List<String> listPhoneMG = listPhoneMG();
-        listZeroingDay(listPhoneMG);
+        List<String> listPhoneMG = this.listPhoneMG();
+        this.listZeroingDay(listPhoneMG);
     }
 
     // процесс обнуление если есть вторая ставка
     void listZeroingDay(List<String> list){
         list.stream()
                 .forEach( numb -> {
-                            if (listPhoneCV().contains(numb)) {
+                            if (this.listPhoneCV().contains(numb)) {
 
                                 //ищем врача с таким номером
                                 int id = doctorCVRepository.findAll()

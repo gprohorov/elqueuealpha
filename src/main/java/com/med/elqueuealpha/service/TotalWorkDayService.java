@@ -93,7 +93,7 @@ public class TotalWorkDayService {
         LocalDate date = LocalDate.of(2020, Month.JANUARY, 1);
         int num = 0;
         while(!date.plusDays(num).equals(LocalDate.now())){
-            setTotalForDay(date.plusDays(num));
+            this.setTotalForDay(date.plusDays(num));
             num++;
         }
     }
