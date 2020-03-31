@@ -31,7 +31,7 @@ public class ScheduleService {
     }
 
     // day
-    @Scheduled(cron = "0 20 19 * * *")
+    @Scheduled(cron = "0 40 19 * * *")
     void totalSalaryDailyGeneration() {
         totalWorkDayService.setTotalForDay(LocalDate.now());
     }
